@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StoreContext } from "./AppWithContext";
 
-const Count = props => {
+const Count = () => {
   const context = useContext(StoreContext);
   return <div>count: {context.count}</div>;
 };

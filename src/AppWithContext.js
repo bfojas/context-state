@@ -1,20 +1,18 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 export const StoreContext = React.createContext();
 
-class AppWithContext extends Component {
-  state = {
-      hello: "Hello from a ",
-      count: 0,
-      counter: ()=> {
-        console.log('click')  
-        this.setState({count: this.state.count+1})}
-}
-  render() {
-    return (
-      <StoreContext.Provider value={this.state}>
-        {this.props.children}
-      </StoreContext.Provider>
-    )
-  }
-}
-export default AppWithContext
+const AppWithContext = props => {
+  const [hello] = useState("Hello From a");
+  const [count, setCount] = useState(0);
+  const counter = () => setCount(count + 1);
+
+  const state = { hello, count, counter };
+
+  return (
+    <StoreContext.Provider value={state}>
+      {props.children}
+    </StoreContext.Provider>
+  );
+};
+
+export default AppWithContext;
